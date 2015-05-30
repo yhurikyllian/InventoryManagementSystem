@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanBahanMasuk" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2bb44d58-9c48-432d-98f7-163887aa0f99">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="dataset1" uuid="6a238f59-a99f-4a94-a579-4c945d84d6b8"/>
+	<subDataset name="Table Dataset" whenResourceMissingType="Empty" uuid="b85da16a-e8b7-4a39-9ce9-8a54c28f53c6">
+		<parameter name="DATE1" class="java.sql.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="DATE2" class="java.sql.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="LOGO" class="java.lang.String"/>
+		<parameter name="EX1" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="EX2" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT "public"."Arsip"."tgl_pembelian", "public"."Arsip"."jml_pembelian", "public"."Arsip"."id_pembelian",
+                "public"."Arsip"."total_harga", "public"."Bahan"."nama_bahan",
+                "public"."Bahan"."harga_satuan",  "public"."Merk"."nama_merk",
+                 "public"."Supplier"."nama_supplier",
+                 "public"."Arsip"."id_bahan"
+            FROM "public"."Arsip"
+                JOIN "public"."Bahan" ON "public"."Arsip"."id_bahan"="public"."Bahan"."id_bahan"
+                JOIN "public"."Supplier" ON "public"."Bahan"."id_supplier"="public"."Supplier"."id_supplier"
+                JOIN "public"."Merk" ON "public"."Bahan"."id_merk"="public"."Merk"."id_merk"
+ 	    WHERE "public"."Arsip"."tgl_pembelian"=CURRENT_DATE ;]]>
+		</queryString>
+		<field name="tgl_pembelian" class="java.sql.Date"/>
+		<field name="jml_pembelian" class="java.lang.Integer"/>
+		<field name="id_pembelian" class="java.lang.Integer"/>
+		<field name="total_harga" class="java.lang.Integer"/>
+		<field name="nama_bahan" class="java.lang.String"/>
+		<field name="harga_satuan" class="java.lang.Integer"/>
+		<field name="nama_merk" class="java.lang.String"/>
+		<field name="nama_supplier" class="java.lang.String"/>
+		<field name="id_bahan" class="java.lang.Integer"/>
+		<group name="tgl_pembelian">
+			<groupExpression><![CDATA[$F{tgl_pembelian}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="DATE1" class="java.sql.Date"/>
+	<parameter name="DATE2" class="java.sql.Date"/>
+	<parameter name="LOGO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT "public"."Arsip"."tgl_pembelian", "public"."Arsip"."jml_pembelian", "public"."Arsip"."id_pembelian",
+                "public"."Arsip"."total_harga", "public"."Bahan"."nama_bahan",
+                "public"."Bahan"."harga_satuan",  "public"."Merk"."nama_merk",
+                 "public"."Supplier"."nama_supplier",
+                 "public"."Arsip"."id_bahan"
+            FROM "public"."Arsip"
+                JOIN "public"."Bahan" ON "public"."Arsip"."id_bahan"="public"."Bahan"."id_bahan"
+                JOIN "public"."Supplier" ON "public"."Bahan"."id_supplier"="public"."Supplier"."id_supplier"
+                JOIN "public"."Merk" ON "public"."Bahan"."id_merk"="public"."Merk"."id_merk"
+ 	    WHERE "public"."Arsip"."tgl_pembelian"=CURRENT_DATE]]>
+	</queryString>
+	<field name="tgl_pembelian" class="java.sql.Date"/>
+	<field name="jml_pembelian" class="java.lang.Integer"/>
+	<field name="id_pembelian" class="java.lang.Integer"/>
+	<field name="total_harga" class="java.lang.Integer"/>
+	<field name="nama_bahan" class="java.lang.String"/>
+	<field name="harga_satuan" class="java.lang.Integer"/>
+	<field name="nama_merk" class="java.lang.String"/>
+	<field name="nama_supplier" class="java.lang.String"/>
+	<field name="id_bahan" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement x="166" y="52" width="204" height="20" uuid="29af07dc-e241-4360-9a5a-efb2066747f4"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[Telpon. (62-21) 55655015]]></text>
+			</staticText>
+			<image>
+				<reportElement x="6" y="-25" width="661" height="138" uuid="ba1e1706-a4a2-45cd-bd48-ca5ff62d76f3"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="191" y="93" width="162" height="20" forecolor="#999900" uuid="39cb23a2-2ee2-4327-b40e-71752acd95db"/>
+				<textElement>
+					<font fontName="Arial" size="16" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Bahan Masuk]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="6" y="15" width="49" height="20" uuid="86738acb-b998-44f2-b95e-fe2c23425450"/>
+				<text><![CDATA[Periode : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="513" y="15" width="42" height="20" uuid="f8b92a55-5e2e-492d-aeb6-173d7dd5cac5"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="473" y="15" width="40" height="20" uuid="f5210727-eb66-4dfa-952a-8e5ea5e04eb3"/>
+				<text><![CDATA[Page : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="15" width="81" height="20" uuid="60d924f1-1de0-45ba-bb89-b35868c80aa1"/>
+				<textFieldExpression><![CDATA[$P{DATE1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="136" y="15" width="8" height="20" uuid="b2090ff7-e8f7-4895-9cfe-62c098c19255"/>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="144" y="15" width="100" height="20" uuid="47885833-5d0b-4e78-9b70-58645b43906e"/>
+				<textFieldExpression><![CDATA[$P{DATE2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<summary>
+		<band height="167" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" isPrintRepeatedValues="false" x="0" y="0" width="555" height="167" uuid="231d4edb-adb7-489c-9b83-d582ee6c8420"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset" uuid="d6e46a20-4970-4bdd-8733-e48495a9b942">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="9e6531ca-bd7c-4864-9cd4-4417b32e2965">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="90" height="30" uuid="f2cf8670-514d-42bb-8883-5c890933d9e2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Tanggal]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="7f5e0ae7-1eaa-456a-b932-6ea7d7d89e94"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{tgl_pembelian}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="9b5dc7d9-9787-47d3-9610-36d1da721cad">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="70" height="30" uuid="1aa9b1ff-444e-4f17-a07e-2516e561d9ff"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[ID Pembelian]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="70" height="20" uuid="98250879-002d-429d-9f5c-20e11542a691"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{id_pembelian}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="d1cc09ac-c49d-4381-a265-b33c9d4a2a14">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="43dadca1-b1e0-4f75-b8c0-4f7b8b53d62c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Nama]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="3c6f20c2-2e05-448c-8bf2-8550bb35d8b5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nama_bahan}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="6fa5097b-d4cb-4072-a9c6-d147d1da1c9f">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="643971e0-1cc6-4418-89ce-a4eac4cd27d4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Merk]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="0feb6dd5-e6ee-412f-912f-67643d732404"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{nama_merk}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="58" uuid="8ccccfc9-a3de-45d0-a0ba-976298c561e5">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="57" height="30" uuid="0ff525b3-d37c-45b4-9112-8a02202ebb1c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Jumlah]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="57" height="20" uuid="9897c438-0d6a-49fb-89d6-acda24af2902"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{jml_pembelian}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="245436fb-da4d-4e7a-a6d9-6046c33deec6">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="d354cf39-6750-4704-acd4-cab1f1edd419"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Harga Satuan]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="7df36b0e-45ef-4522-9657-661afaa03a3a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{harga_satuan}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="35aa2daa-da68-4695-a8d1-9cdf5f830378">
+						<jr:tableHeader style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table 1_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="3b25b489-6a2c-449d-865d-4c59f0496231"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Harga Total]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="6062316c-9b58-4db8-875a-1950c6de0ec9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{total_harga}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

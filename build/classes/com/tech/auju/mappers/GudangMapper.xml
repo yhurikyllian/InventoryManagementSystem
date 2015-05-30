@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.tech.auju.mappers.GudangMapper">
+       <resultMap type="Pembelian" id="PembelianResult">
+            <id property="id_pembelian" column="id_pembelian"/>
+            <result property="tgl_pembelian" column="tgl_pembelian"/>
+            <result property="jml_pembelian" column="jml_pembelian"/>
+            <result property="total_harga" column="total_harga"/>            
+            <result property="bahan.id_bahan" column="id_bahan"/>
+            <result property="bahan.nama_bahan" column="nama_bahan"/>
+            <result property="bahan.jumlah_bahan" column="jumlah_bahan"/>
+            <result property="bahan.harga_satuan" column="harga_satuan"/>
+            <result property="bahan.merk.id_merk" column="id_merk"/>
+            <result property="bahan.merk.nama_merk" column="nama_merk"/>
+            <result property="bahan.jenis.id_jenis" column="id_jenis"/>
+            <result property="bahan.jenis.nama_jenis" column="nama_jenis"/>
+            <result property="bahan.warna.id_warna" column="id_warna"/>
+            <result property="bahan.warna.nama_warna" column="nama_warna"/>
+            <result property="bahan.supplier.id_supplier" column="id_supplier"/>
+            <result property="bahan.supplier.nama_supplier" column="nama_supplier"/>
+            <result property="bahan.supplier.alamat_supplier" column="alamat_supplier"/>
+        </resultMap>   
+        
+        <resultMap type="Retur" id="ReturResult">
+            <id property="id_retur" column="id_retur"/>
+            <result property="jml_retur" column="jml_retur"/>
+            <result property="tgl_retur" column="tgl_retur"/>
+            <result property="tgl_pembelian" column="tgl_pembelian"/>
+            <result property="jml_pembelian" column="jml_pembelian"/>
+            <result property="total_harga" column="total_harga"/>            
+            <result property="bahan.id_bahan" column="id_bahan"/>
+            <result property="bahan.nama_bahan" column="nama_bahan"/>
+            <result property="bahan.jumlah_bahan" column="jumlah_bahan"/>
+            <result property="bahan.harga_satuan" column="harga_satuan"/>
+            <result property="bahan.merk.id_merk" column="id_merk"/>
+            <result property="bahan.merk.nama_merk" column="nama_merk"/>
+            <result property="bahan.jenis.id_jenis" column="id_jenis"/>
+            <result property="bahan.jenis.nama_jenis" column="nama_jenis"/>
+            <result property="bahan.warna.id_warna" column="id_warna"/>
+            <result property="bahan.warna.nama_warna" column="nama_warna"/>
+            <result property="bahan.supplier.id_supplier" column="id_supplier"/>
+            <result property="bahan.supplier.nama_supplier" column="nama_supplier"/>
+            <result property="bahan.supplier.alamat_supplier" column="alamat_supplier"/>
+        </resultMap>
+        
+        <resultMap type="Bahan" id="BahanResult">
+            <id property="id_bahan" column="id_bahan"/>
+            <result property="nama_bahan" column="nama_bahan"/>
+            <result property="jumlah_bahan" column="jumlah_bahan"/>
+            <result property="harga_satuan" column="harga_satuan"/>
+            <result property="merk.id_merk" column="id_merk"/>
+            <result property="merk.nama_merk" column="nama_merk"/>
+            <result property="warna.id_warna" column="id_warna"/>
+            <result property="warna.nama_warna" column="nama_warna"/>
+            <result property="jenis.id_jenis" column="id_jenis"/>
+            <result property="jenis.nama_jenis" column="nama_jenis"/>
+            <result property="supplier.id_supplier" column="id_supplier"/>
+            <result property="supplier.nama_supplier" column="nama_supplier"/>
+            <result property="supplier.alamat_supplier" column="alamat_supplier"/>
+        </resultMap>
+        
+        <select id="selectPembelian" resultMap="PembelianResult">
+            SELECT "public"."Pembelian"."tgl_pembelian", "public"."Pembelian"."jml_pembelian", "public"."Pembelian"."id_pembelian",
+                "public"."Pembelian"."total_harga", "public"."Bahan"."nama_bahan", "public"."Bahan"."jumlah_bahan",
+                "public"."Bahan"."harga_satuan", "public"."Jenis"."nama_jenis", "public"."Merk"."nama_merk",
+                "public"."Warna"."nama_warna", "public"."Supplier"."nama_supplier", "public"."Supplier"."alamat_supplier", 
+                "public"."Bahan"."id_jenis", "public"."Bahan"."id_merk", "public"."Bahan"."id_warna", "public"."Pembelian"."id_bahan", 
+                "public"."Bahan"."id_supplier"
+            FROM "public"."Pembelian" 
+                JOIN "public"."Bahan" ON "public"."Pembelian"."id_bahan"="public"."Bahan"."id_bahan" 
+                JOIN "public"."Supplier" ON "public"."Bahan"."id_supplier"="public"."Supplier"."id_supplier"
+                JOIN "public"."Jenis" ON "public"."Bahan"."id_jenis"="public"."Jenis"."id_jenis" 
+                JOIN "public"."Merk" ON "public"."Bahan"."id_merk"="public"."Merk"."id_merk" 
+                JOIN "public"."Warna" ON "public"."Bahan"."id_warna"="public"."Warna"."id_warna";            
+        </select>
+        
+        <insert id="insertBahan" parameterType="Bahan">
+            INSERT INTO "public"."Bahan"(nama_bahan, jumlah_bahan, harga_satuan, id_merk, id_warna, id_jenis, id_supplier) 
+            VALUES (#{nama_bahan}, #{jumlah_bahan}, #{harga_satuan}, #{merk.id_merk}, #{warna.id_warna}, #{jenis.id_jenis}, #{supplier.id_supplier};
+        </insert>
+        
+        <update id="updateJumlahBahan" parameterType="int">
+            UPDATE "public"."Bahan" SET jumlah_bahan=#{param1}            
+            WHERE "public"."Bahan"."id_bahan"=#{param2} ;
+        </update>
+        
+        <insert id="insertRetur" parameterType="Retur">
+            INSERT INTO "public"."Retur"(tgl_retur, tgl_pembelian, jml_pembelian, total_harga, id_bahan)
+            VALUES (#{tgl_retur}, #{tgl_pembelian}, #{jml_pembelian}, #{total_harga}, #{bahan.id_bahan});
+        </insert>
+        
+        <select id="selectRetur" resultMap="ReturResult">
+            SELECT "public"."Retur"."tgl_pembelian", "public"."Retur"."jml_pembelian",
+                "public"."Retur"."total_harga", "public"."Bahan"."nama_bahan", "public"."Supplier"."nama_supplier",
+                "public"."Retur"."tgl_retur"
+            FROM "public"."Retur" 
+            JOIN "public"."Bahan" ON "public"."Retur"."id_bahan"="public"."Bahan"."id_bahan" 
+            JOIN "public"."Supplier" ON "public"."Bahan"."id_supplier"="public"."Supplier"."id_supplier";
+        </select>
+        
+        <delete id="removePembelian" parameterType="int">
+            DELETE FROM "public"."Pembelian" WHERE "public"."Pembelian"."id_pembelian" = #{param1};
+        </delete>    
+        
+        <insert id="insertToArsip" parameterType="Pembelian">
+            INSERT INTO "public"."Arsip" SELECT * FROM "public"."Pembelian";
+            INSERT INTO "public"."Arsip"(id_pembelian, tgl_pembelian, jml_pembelian, total_harga, id_bahan)
+            VALUES (#{id_pembelian}, #{tgl_pembelian}, #{jml_pembelian}, #{total_harga}, #{bahan.id_bahan});
+        </insert>
+        
+        <update id="updateTanggalPembelian">
+            UPDATE "public"."Pembelian" SET tgl_pembelian=#{param1}            
+            WHERE "public"."Pembelian"."id_pembelian"=#{param2} ;
+        </update>
+            
+    </mapper>

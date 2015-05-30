@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tech.auju.mappers.ProduksiMapper">
+    <resultMap type="Bahan" id="BahanResult">
+            <id property="id_bahan" column="id_bahan"/>
+            <result property="nama_bahan" column="nama_bahan"/>
+            <result property="jumlah_bahan" column="jumlah_bahan"/>
+            <result property="harga_satuan" column="harga_satuan"/>
+            <result property="merk.id_merk" column="id_merk"/>
+            <result property="merk.nama_merk" column="nama_merk"/>
+            <result property="warna.id_warna" column="id_warna"/>
+            <result property="warna.nama_warna" column="nama_warna"/>
+            <result property="jenis.id_jenis" column="id_jenis"/>
+            <result property="jenis.nama_jenis" column="nama_jenis"/>
+            <result property="supplier.id_supplier" column="id_supplier"/>
+            <result property="supplier.nama_supplier" column="nama_supplier"/>
+            <result property="supplier.alamat_supplier" column="alamat_supplier"/>
+        </resultMap>
+    
+    <select id="selectBahan" resultMap="BahanResult">
+            SELECT "public"."Bahan"."id_bahan", "public"."Bahan"."nama_bahan", "public"."Bahan"."jumlah_bahan", "public"."Bahan"."harga_satuan", 
+                "public"."Merk"."nama_merk", "public"."Warna"."nama_warna", "public"."Jenis"."nama_jenis" 
+            FROM "public"."Bahan" 
+            JOIN "public"."Merk" ON "public"."Bahan"."id_merk"="public"."Merk"."id_merk"
+            JOIN "public"."Warna" ON "public"."Bahan"."id_warna"="public"."Warna"."id_warna"
+            JOIN "public"."Jenis" ON "public"."Bahan"."id_jenis"="public"."Jenis"."id_jenis";
+    </select>
+    
+    <select id="selectBahanByName" resultMap="BahanResult">
+            SELECT "public"."Bahan"."id_bahan", "public"."Bahan"."nama_bahan", "public"."Bahan"."jumlah_bahan", "public"."Bahan"."harga_satuan", 
+                "public"."Merk"."nama_merk", "public"."Warna"."nama_warna", "public"."Jenis"."nama_jenis" 
+            FROM "public"."Bahan" 
+            JOIN "public"."Merk" ON "public"."Bahan"."id_merk"="public"."Merk"."id_merk"
+            JOIN "public"."Warna" ON "public"."Bahan"."id_warna"="public"."Warna"."id_warna"
+            JOIN "public"."Jenis" ON "public"."Bahan"."id_jenis"="public"."Jenis"."id_jenis"
+            WHERE
+                "public"."Bahan"."nama_bahan" LIKE #{param1};
+    </select>
+    
+    <update id="updateJumlahBahan" parameterType="int">
+            UPDATE "public"."Bahan" SET jumlah_bahan=#{param1}            
+            WHERE "public"."Bahan"."id_bahan"=#{param2} ;
+    </update>
+</mapper>    
